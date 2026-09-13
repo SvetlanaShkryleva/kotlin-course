@@ -1,3 +1,5 @@
+package org.example.lesson03
+
 fun main(args: Array<String>) {
     println("Hello World, I am Sveta and I will become Quality Assurance Automation Engineer!")
 
