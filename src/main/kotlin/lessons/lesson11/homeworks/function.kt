@@ -1,0 +1,82 @@
+package lessons.lesson11.homeworks
+
+//Задачи на сигнатуру метода
+//Напишите сигнатуру метода в которую входит модификатор доступа, название функции, список аргументов с типами и возвращаемое значение.
+//В теле метода можешь сделать возврат объекта нужного типа если это требуется для устранения ошибок.
+
+// 1. Не принимает аргументов и не возвращает значения.
+public fun noArgsNoReturn() {
+}
+
+// 2. Принимает два целых числа и возвращает их сумму.
+public fun sum(a: Int, b: Int): Int {
+    return a + b
+}
+
+// 3. Принимает строку и ничего не возвращает.
+public fun printString(s: String) {
+}
+
+// 4. Принимает список целых чисел и возвращает среднее значение типа Double.
+public fun average(numbers: List<Int>): Double {
+    return numbers.sum().toDouble() / numbers.size
+}
+
+// 5. Принимает nullable строку и возвращает её длину в виде nullable целого числа и доступна только в текущем файле.
+private fun lengthOrNull(s: String?): Int? {
+    return s?.length
+}
+
+// 6. Не принимает аргументов и возвращает nullable вещественное число.
+public fun getNullableDouble(): Double? {
+}
+
+// 7. Принимает nullable список целых чисел, не возвращает значения и доступна только в текущем файле.
+private fun processNullableList(list: List<Int>?) {
+}
+
+// 8. Принимает целое число и возвращает nullable строку.
+public fun toNullableString(n: Int): String? {
+}
+
+// 9. Не принимает аргументов и возвращает список nullable строк.
+public fun getNullableStrings(): List<String?> {
+}
+
+// 10. Принимает nullable строку и nullable целое число и возвращает nullable булево значение.
+public fun check(s: String?, n: Int?): Boolean? {
+}
+
+//Задачи на написание кода
+//Напишите валидную сигнатуру метода а так же рабочий код для задач.
+
+//11. Напишите функцию multiplyByTwo, которая принимает целое число и возвращает его, умноженное на 2.
+public fun multiplyByTwo(num: Int): Int {
+    return num * 2
+}
+
+//12. Создайте функцию isEven, которая принимает целое число и возвращает true, если число чётное, и false в противном случае.
+public fun isEven(a: Int): Boolean {
+    if (a % 2 == 0) {
+        return true
+    } else {
+        return false
+    }
+}
+
+//13. Напишите функцию printNumbersUntil, которая принимает целое число n и выводит на экран числа от 1 до n. Если число n меньше 1, функция должна прекратить выполнение с помощью return без вывода сообщений.
+public fun printNumbersUntil() {
+
+}
+
+//14. Создайте функцию findFirstNegative, которая принимает список целых чисел и возвращает первое отрицательное число в списке. Если отрицательных чисел нет, функция должна вернуть null.
+public findFirstNegative() {
+
+}
+
+//15. Напишите функцию processList, которая принимает список строк. Функция должна проходить по списку и выводить каждую строку. Если встречается null значение, функция должна прекратить выполнение с помощью return без возврата значения.
+public fun processList(a: List<String>) {
+    for (b in a) {
+        println(b)
+    }
+}
