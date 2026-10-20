@@ -63,42 +63,88 @@ fun main() {
     val errors = mapOf(404 to "Not Found", 500 to "Internal Server Error", 403 to "Forbidden")
     println(errors.containsKey(500))
 
-//13. Дан неизменяемый словарь, где ключи — это идентификаторы тестовых сценариев в формате `"TestID_Version"`, а значения — статусы выполнения этих тестов (`"Passed"`, `"Failed"`, `"Skipped"`). Отфильтруйте словарь, оставив только те сценарии, идентификаторы которых соответствуют определённой версии тестов, то есть в ключе содержится требуемая версия.
+//13. Отфильтровать сценарии по версии в ключе ("TestID_Version").
+    val scenarios = mapOf("login_1.0"   to "Passed", "logout_1.0"  to "Failed", "payment_2.0" to "Passed", "search_1.0"  to "Skipped")
+    val forVersion = scenarios.filterKeys { it.substringAfterLast('_') == "1.0" }
+    println(forVersion)
 
-//14. У вас есть словарь, где ключи — это названия функциональных модулей приложения, а значения — результаты их тестирования. Проверьте, есть ли модули с неудачным тестированием.
-    val modules = mapOf("microService1" to "OK", "microService2" to "OK")
-    println(modules.containsValue("NOT OK"))
+//14. Есть ли модули с неудачным тестированием.
+    val modules2 = mapOf("Auth" to "Passed", "Payment" to "Failed", "Search" to "Passed")
+    println(modules2.any { it.value == "Failed" })
 
-//15. Добавьте в изменяемый словарь с настройками тестовой среды настройки из другого словаря.
-    val m = mutableMapOf("Первый" to 2, "Второй" to 46)
-    m["Третий"] = 50
-    println(m)
+//15. Добавить в изменяемый словарь настройки из другого словаря.
+    val envSettings = mutableMapOf("browser" to "Chrome", "os" to "Windows")
+    val extraSettings = mapOf("timeout" to "30s", "retries" to "2")
+    envSettings.putAll(extraSettings)
+    println(envSettings)
 
-//16. Объедините два неизменяемых словаря с данными о багах.
-    //.putAll(mapOf())
+//16. Объединить два неизменяемых словаря с данными о багах.
+    val bugsA = mapOf("bug1" to "open", "bug2" to "fixed")
+    val bugsB = mapOf("bug3" to "open", "bug4" to "in progress")
+    val allBugs = bugsA + bugsB
+    println(allBugs)
 
-//17. Очистите изменяемый словарь с временными данными о последнем прогоне автоматизированных тестов.
-    //.clear()
+//17. Очистить изменяемый словарь с временными данными.
+    val lastRun = mutableMapOf("test1" to "ok", "test2" to "fail")
+    lastRun.clear()
+    println(lastRun)
 
-//18. Исключите из отчёта по автоматизированному тестированию те случаи, где тесты были пропущены (имеют статус `"skipped"`). Ключи — название теста, значения — статус.
+//18. Исключить из отчёта пропущенные тесты.
+    val report = mapOf("t1" to "passed", "t2" to "skipped", "t3" to "failed", "t4" to "skipped")
+    val withoutSkipped = report.filterValues { it != "skipped" }
+    println(withoutSkipped)
 
-//19. Создайте копию словаря с конфигурациями тестирования, удалив из него несколько конфигураций.
+//19. Копия словаря конфигураций без нескольких конфигураций.
+    val configs = mapOf("a" to 1, "b" to 2, "c" to 3, "d" to 4)
+    val toRemove = setOf("b", "d")
+    val trimmed = configs.filterKeys { it !in toRemove }
+    println(trimmed)
 
-//20. Создайте отчёт о тестировании, преобразовав словарь с результатами тестирования (ключ — идентификатор теста, значение — результат) в список строк формата `"Test ID: результат"`.
+//20. Отчёт в виде списка строк "Test ID: результат".
+    val testOutcomes = mapOf("T-01" to "Passed", "T-02" to "Failed", "T-03" to "Skipped")
+    val lines = testOutcomes.map { (id, res) -> "Test ID: $id — $res" }
+    println(lines)
 
-//21. Преобразуйте изменяемый словарь с результатами последнего тестирования в неизменяемый для архивации.
+//21. Изменяемый словарь → неизменяемый (для архивации).
+    val mutableResults = mutableMapOf("t1" to "passed", "t2" to "failed")
+    val archived: Map<String, String> = mutableResults.toMap()
+    println(archived)
 
-//22. Преобразуйте словарь, содержащий числовой ID теста и данные о времени выполнения тестов, заменив идентификаторы тестов на их строковый аналог (например, через `toString()`).
+//22. Заменить числовые ID тестов на строковые.
+    val numericIds = mapOf(101 to 2.5, 202 to 3.1, 303 to 1.8)
+    val stringIds = numericIds.mapKeys { it.key.toString() }
+    println(stringIds)
 
-//23. Для словаря с оценками производительности различных версий приложения (ключи — строковая версия, значения — дробное число времени ответа сервера) увеличьте каждую оценку на 10%, чтобы учесть новые условия тестирования.
+//23. Увеличить каждую оценку производительности на 10%.
+    val perf = mapOf("1.0.0" to 120.0, "1.1.0" to 98.5, "1.2.0" to 150.0)
+    val boosted = perf.mapValues { it.value * 1.1 }
+    println(boosted)
 
-//24. Проверьте, пуст ли словарь с ошибками компиляции тестов.
+//24. Пуст ли словарь с ошибками компиляции.
+    val compileErrors = mapOf<String, String>()
+    println(compileErrors.isEmpty())
 
-//25. Убедитесь, что словарь с результатами нагрузочного тестирования не пуст.
+//25. Словарь с нагрузочным тестированием не пуст.
+    val loadResults = mapOf("rps" to 1200, "latency" to 85)
+    println(loadResults.isNotEmpty())
 
-//26. Проверьте, прошли ли успешно все автоматизированные тесты в словаре с результатами.
+//26. Все ли автотесты прошли успешно.
+    val allResults = mapOf("t1" to "passed", "t2" to "passed", "t3" to "passed")
+    println(allResults.all { it.value == "passed" })
 
-//27. Определите, содержит ли словарь с результатами тестирования хотя бы один тест с ошибкой.
+//27. Есть ли хотя бы один тест с ошибкой.
+    val someResults = mapOf("t1" to "passed", "t2" to "failed")
+    println(someResults.any { it.value == "failed" })   // true
 
-//28. Отфильтруйте словарь с результатами тестирования сервисов, оставив только те тесты, которые не прошли успешно и содержат в названии `"optional"`.
+//28. Тесты, которые упали И содержат "optional" в названии.
+    val serviceResults = mapOf(
+        "login_optional"   to "failed",
+        "login_required"   to "failed",
+        "search_optional"  to "passed",
+        "payment_optional" to "failed"
+    )
+    val failedOptional = serviceResults.filter { (name, status) ->
+        status != "passed" && "optional" in name
+    }
+    println(failedOptional)
 }
