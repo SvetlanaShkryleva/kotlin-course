@@ -28,24 +28,20 @@ private fun lengthOrNull(s: String?): Int? {
 }
 
 // 6. Не принимает аргументов и возвращает nullable вещественное число.
-public fun getNullableDouble(): Double? {
-}
+
 
 // 7. Принимает nullable список целых чисел, не возвращает значения и доступна только в текущем файле.
 private fun processNullableList(list: List<Int>?) {
 }
 
 // 8. Принимает целое число и возвращает nullable строку.
-public fun toNullableString(n: Int): String? {
-}
+
 
 // 9. Не принимает аргументов и возвращает список nullable строк.
-public fun getNullableStrings(): List<String?> {
-}
+
 
 // 10. Принимает nullable строку и nullable целое число и возвращает nullable булево значение.
-public fun check(s: String?, n: Int?): Boolean? {
-}
+
 
 //Задачи на написание кода
 //Напишите валидную сигнатуру метода а так же рабочий код для задач.
@@ -70,9 +66,6 @@ public fun printNumbersUntil() {
 }
 
 //14. Создайте функцию findFirstNegative, которая принимает список целых чисел и возвращает первое отрицательное число в списке. Если отрицательных чисел нет, функция должна вернуть null.
-public findFirstNegative() {
-
-}
 
 //15. Напишите функцию processList, которая принимает список строк. Функция должна проходить по списку и выводить каждую строку. Если встречается null значение, функция должна прекратить выполнение с помощью return без возврата значения.
 public fun processList(a: List<String>) {
